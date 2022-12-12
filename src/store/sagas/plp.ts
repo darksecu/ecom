@@ -1,6 +1,6 @@
-import {call, takeEvery} from 'redux-saga/effects';
+import {call, takeEvery, put} from 'redux-saga/effects';
 import {PLPEndPoint} from '../../services/api-end-points';
-import {fetchPLP} from '../slices/plp';
+import {fetchPLP, fetchPLPSuccess, fetchPLPFailed} from '../slices/plp';
 import Axios, {AxiosResponse} from 'axios';
 
 function* fetchPLPWorker(action: any) {
@@ -10,9 +10,9 @@ function* fetchPLPWorker(action: any) {
       url: PLPEndPoint,
     };
     let response: AxiosResponse<any> = yield call(Axios, options);
-    console.log(response.data);
+    yield put(fetchPLPSuccess(response.data));
   } catch (e: any) {
-    console.log(e);
+    yield put(fetchPLPFailed());
   }
 }
 
