@@ -10,8 +10,8 @@ interface listItem {
 interface list extends Array<listItem> {}
 
 export interface PLPState {
-  isLoading?: boolean;
-  list?: list;
+  isLoading: boolean;
+  list: list;
 }
 
 const initialState: PLPState = {

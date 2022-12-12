@@ -16,7 +16,7 @@ const App = () => {
 
   const dispatch = useAppDispatch();
   useEffect(() => {
-    dispatch(fetchPLP());
+    dispatch(fetchPLP({}));
   }, []);
 
   return (
@@ -24,7 +24,9 @@ const App = () => {
       <StatusBar />
       <ScrollView>
         <View>
-          <Text>check</Text>
+          <Text>
+            {String(isLoading)} - {list.length}
+          </Text>
         </View>
       </ScrollView>
     </SafeAreaView>
