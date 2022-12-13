@@ -12,7 +12,7 @@ describe('Suspense view component', () => {
 
   it('Loading Done, Should Render Child', () => {
     const tree = render(
-      <SuspenseView isLoading={true} list={[]}>
+      <SuspenseView isLoading={false} list={[]}>
         <View />
       </SuspenseView>,
     );
