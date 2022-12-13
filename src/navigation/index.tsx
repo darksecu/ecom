@@ -1,9 +1,7 @@
-import React, {useCallback} from 'react';
-import {NavigationContainer, useNavigation} from '@react-navigation/native';
+import React from 'react';
+import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {PDPScreen, PLPScreen, CartScreen} from '../presentationals/screens';
-import {Text, TouchableOpacity, View} from 'react-native';
-import {CartScreenProps} from '../presentationals/screens/types';
 const Stack = createNativeStackNavigator();
 
 const RootNavigation = () => {
