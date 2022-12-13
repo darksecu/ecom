@@ -14,12 +14,12 @@ interface listItem {
 const CartTemplate = memo(() => {
   const dispatch = useAppDispatch();
   const [itemList, setItemList] = useState({});
-  const plpItem = useAppSelector(state => state.plpReducer.list);
-  const cartItem = useAppSelector(state => state.cartReducer.list);
+  const plpItem = useAppSelector(state => state?.plpReducer?.list);
+  const cartItem = useAppSelector(state => state?.cartReducer?.list);
 
   useEffect(() => {
     let obj = {};
-    plpItem.forEach(el => {
+    plpItem?.forEach(el => {
       obj[el.id] = el;
     });
     setItemList(obj);
@@ -87,7 +87,7 @@ const CartTemplate = memo(() => {
     );
   };
 
-  return <FlatList data={cartItem} renderItem={renderItem} />;
+  return <FlatList testID="CartList" data={cartItem} renderItem={renderItem} />;
 });
 
 export {CartTemplate};
