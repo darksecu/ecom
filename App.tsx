@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import {useAppSelector, useAppDispatch} from './src/store/hooks';
 import {fetchPLP} from './src/store/slices/plp';
+import RootNavigation from './src/navigation';
 
 const App = () => {
   const list = useAppSelector(state => state.plpReducer.list);
@@ -19,18 +20,7 @@ const App = () => {
     dispatch(fetchPLP({}));
   }, []);
 
-  return (
-    <SafeAreaView>
-      <StatusBar />
-      <ScrollView>
-        <View>
-          <Text>
-            {String(isLoading)} - {list.length}
-          </Text>
-        </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
+  return <RootNavigation />;
 };
 
 export default App;
