@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Suspense view component Loading Done, Should Render Child 1`] = `<View />`;

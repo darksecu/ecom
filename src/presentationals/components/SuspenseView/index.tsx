@@ -14,7 +14,7 @@ const SuspenseView = ({isLoading, children}: Props) => {
         justifyContent: 'center',
         alignItems: 'center',
       }}>
-      <ActivityIndicator />
+      <ActivityIndicator testID="SuspenseViewActivityIndicator" />
     </View>
   ) : (
     children
