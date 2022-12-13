@@ -22,22 +22,4 @@ describe('PDP Template component', () => {
     const expected = await findByTestId('CartList');
     expect(expected).toBeDefined();
   });
-
-  //   it('Quantity is 0 by default', async () => {
-  //     const {findByTestId} = render(<PDPTemplate {...dummyData} />);
-  //     const Quantity = await findByTestId('quanityDisplay');
-  //     expect(Quantity.children).toEqual(['0']);
-  //   });
-
-  //   it('Price Label Validation', async () => {
-  //     const {findByTestId} = render(<PDPTemplate {...dummyData} />);
-  //     const data = await findByTestId('PDPPrice');
-  //     expect(data.children).toEqual([`USD `, String(dummyData.price)]);
-  //   });
-
-  //   it('Name Label Validation', async () => {
-  //     const {findByTestId} = render(<PDPTemplate {...dummyData} />);
-  //     const data = await findByTestId('PDPName');
-  //     expect(data.children).toEqual([`${dummyData.name}`]);
-  //   });
 });
