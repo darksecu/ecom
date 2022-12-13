@@ -13,9 +13,10 @@ interface listItem {
 
 const PDPTemplate = memo((props: listItem) => {
   const dispatch = useAppDispatch();
-  const cartItem = useAppSelector(state =>
-    state.cartReducer.list.find(item => item.itemId === props.id),
-  );
+  const cartItem =
+    useAppSelector(state =>
+      state?.cartReducer?.list.find(item => item.itemId === props.id),
+    ) || [];
 
   const AddToCartPressed = useCallback(() => {
     dispatch(addToCart({itemId: props.id}));
@@ -44,10 +45,18 @@ const PDPTemplate = memo((props: listItem) => {
         }}
         style={{width: 200, height: undefined, aspectRatio: 0.5}}
       />
-      <Text style={{marginTop: 20}}>USD {props.price}</Text>
-      <Text style={{marginBottom: 20, fontWeight: '600'}}>{props.name}</Text>
+      <Text testID="PDPPrice" style={{marginTop: 20}}>
+        USD {props.price}
+      </Text>
+      <Text testID="PDPName" style={{marginBottom: 20, fontWeight: '600'}}>
+        {props.name}
+      </Text>
       <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
         <TouchableOpacity
+          testID="removeButton"
+          accessibilityState={{
+            disabled: removeButtonDisabled,
+          }}
           disabled={removeButtonDisabled}
           style={{
             backgroundColor: removeButtonDisabled ? 'grey' : 'blue',
@@ -57,10 +66,11 @@ const PDPTemplate = memo((props: listItem) => {
           <Text style={{color: 'white'}}>-</Text>
         </TouchableOpacity>
         <TouchableOpacity style={{backgroundColor: 'white', padding: 10}}>
-          <Text>{cartItem?.quantity || 0}</Text>
+          <Text testID="quanityDisplay">{cartItem?.quantity || 0}</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
+          testID="addButton"
           style={{backgroundColor: 'blue', padding: 10}}
           onPress={AddToCartPressed}>
           <Text style={{color: 'white'}}>+</Text>

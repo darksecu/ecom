@@ -78,6 +78,7 @@ const PLPTemplate = memo(({list, isLoading}: Props) => {
   return (
     <SuspenseView isLoading={isLoading}>
       <FlatList
+        testID="PLPFlatList"
         data={list}
         renderItem={renderItem}
         ItemSeparatorComponent={ItemSeparatorComponent}

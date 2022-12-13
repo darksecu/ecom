@@ -1,22 +1,32 @@
 import * as React from 'react';
 import {View} from 'react-native';
 import {SuspenseView} from '..';
-import {fireEvent, render} from 'react-native-testing-library';
+import renderer from 'react-test-renderer';
+import {render} from 'react-native-testing-library';
 
 describe('Suspense view component', () => {
-  it('Loading in Progress, Should Render Activity Indicator', () => {
-    const tree = render(<SuspenseView isLoading={true} list={[]} />);
-
-    expect(tree.findByTestId('SuspenseViewActivityIndicator')).toBeDefined();
+  it('SnapShot', async () => {
+    const expected = renderer
+      .create(<SuspenseView isLoading={true} list={[]} />)
+      .toJSON();
+    expect(expected).toMatchSnapshot();
   });
 
-  it('Loading Done, Should Render Child', () => {
-    const tree = render(
+  it('Loading in Progress, Should Render Activity Indicator', async () => {
+    const {findByTestId} = render(<SuspenseView isLoading={true} list={[]} />);
+    const SuspenseViewActivityIndicator = await findByTestId(
+      'SuspenseViewActivityIndicator',
+    );
+    expect(SuspenseViewActivityIndicator).toBeDefined();
+  });
+
+  it('Loading in Done', async () => {
+    const {findByTestId} = render(
       <SuspenseView isLoading={false} list={[]}>
-        <View />
+        <View testID="DoneLoading" />
       </SuspenseView>,
     );
-
-    expect(tree).toMatchSnapshot();
+    const DoneLoading = await findByTestId('DoneLoading');
+    expect(DoneLoading).toBeDefined();
   });
 });
