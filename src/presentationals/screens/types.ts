@@ -11,6 +11,7 @@ type RootStackParamList = {
     price: number;
     img: string;
   };
+  Cart: undefined;
 };
 
 export type PLPScreenProps = NativeStackNavigationProp<
@@ -20,4 +21,9 @@ export type PLPScreenProps = NativeStackNavigationProp<
 export type PDPScreenProps = NativeStackNavigationProp<
   RootStackParamList,
   'PDP'
+>;
+
+export type CartScreenProps = NativeStackNavigationProp<
+  RootStackParamList,
+  'Cart'
 >;

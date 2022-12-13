@@ -26,6 +26,10 @@ const PLPTemplate = memo(({list, isLoading}: Props) => {
     [navigation],
   );
 
+  const navigateToCart = useCallback(() => {
+    navigation.navigate('Cart');
+  }, [navigation]);
+
   const renderItem = useCallback(({item}: {item: listItem}) => {
     const imgUrl = item.img.includes('http://')
       ? encodeURI(item.img.replace('http://', 'https://'))
@@ -48,7 +52,7 @@ const PLPTemplate = memo(({list, isLoading}: Props) => {
     );
   }, []);
 
-  const ItemSeparatorComponent = () => {
+  const ItemSeparatorComponent = useCallback(() => {
     return (
       <View
         style={{
@@ -59,7 +63,17 @@ const PLPTemplate = memo(({list, isLoading}: Props) => {
         }}
       />
     );
-  };
+  }, []);
+
+  const ListFooterComponent = useCallback(() => {
+    return (
+      <View
+        style={{
+          paddingBottom: 40,
+        }}
+      />
+    );
+  }, []);
 
   return (
     <SuspenseView isLoading={isLoading}>
@@ -67,7 +81,20 @@ const PLPTemplate = memo(({list, isLoading}: Props) => {
         data={list}
         renderItem={renderItem}
         ItemSeparatorComponent={ItemSeparatorComponent}
+        ListFooterComponent={ListFooterComponent}
       />
+      <TouchableOpacity
+        onPress={navigateToCart}
+        style={{
+          position: 'absolute',
+          backgroundColor: '#ccc',
+          padding: 20,
+          bottom: 0,
+          width: '100%',
+          alignItems: 'center',
+        }}>
+        <Text>View Cart</Text>
+      </TouchableOpacity>
     </SuspenseView>
   );
 });
