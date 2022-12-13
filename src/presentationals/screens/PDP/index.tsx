@@ -1,23 +1,23 @@
-import React, {useCallback} from 'react';
-import {PDPScreenProps} from '../types';
-import {View, Text} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
+import React, {useEffect} from 'react';
+import {SafeAreaView, StatusBar} from 'react-native';
+import {PDPTemplate} from '../../templates';
+import {useRoute} from '@react-navigation/native';
+
+interface listItem {
+  id: number;
+  color: string;
+  name: string;
+  price: number;
+  img: string;
+}
 
 const PDPScreen = () => {
-  const navigation = useNavigation<PDPScreenProps>();
-  const navigateBack = useCallback(() => {
-    navigation.goBack();
-  }, [navigation]);
-
+  const {params} = useRoute();
   return (
-    <View
-      style={{
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}>
-      <Text onPress={navigateBack}>Go Back</Text>
-    </View>
+    <SafeAreaView style={{flex: 1}}>
+      <StatusBar />
+      <PDPTemplate {...params} />
+    </SafeAreaView>
   );
 };
 

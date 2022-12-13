@@ -1,24 +1,23 @@
-import React, {useCallback} from 'react';
-import {PLPScreenProps} from '../types';
-import {View, Text} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
+import React, {useEffect} from 'react';
+import {SafeAreaView, StatusBar} from 'react-native';
+import {useAppSelector, useAppDispatch} from '../../../store/hooks';
+import {fetchPLP} from '../../../store/slices/plp';
+import {PLPTemplate} from '../../templates';
 
 const PLPScreen = () => {
-  const navigation = useNavigation<PLPScreenProps>();
+  const dispatch = useAppDispatch();
+  const list = useAppSelector(state => state.plpReducer.list);
+  const isLoading = useAppSelector(state => state.plpReducer.isLoading);
 
-  const navigateToPDP = useCallback(() => {
-    navigation.navigate('PDP');
-  }, [navigation]);
+  useEffect(() => {
+    dispatch(fetchPLP({}));
+  }, []);
 
   return (
-    <View
-      style={{
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}>
-      <Text onPress={navigateToPDP}>PLP</Text>
-    </View>
+    <SafeAreaView style={{flex: 1}}>
+      <StatusBar />
+      <PLPTemplate isLoading={isLoading} list={list} />
+    </SafeAreaView>
   );
 };
 

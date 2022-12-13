@@ -4,7 +4,13 @@ import {NavigatorScreenParams} from '@react-navigation/native';
 
 type RootStackParamList = {
   PLP: undefined;
-  PDP: undefined;
+  PDP: {
+    id: number;
+    color: string;
+    name: string;
+    price: number;
+    img: string;
+  };
 };
 
 export type PLPScreenProps = NativeStackNavigationProp<
