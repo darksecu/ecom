@@ -1,5 +1,6 @@
 import {configureStore} from '@reduxjs/toolkit';
 import plpReducer from './slices/plp';
+import cartReducer from './slices/cart';
 import createSagaMiddleware from 'redux-saga';
 import rootSaga from './sagas/plp';
 
@@ -8,6 +9,7 @@ const sagaMiddleware = createSagaMiddleware();
 export const store = configureStore({
   reducer: {
     plpReducer: plpReducer,
+    cartReducer: cartReducer,
   },
   middleware: getDefaultMiddleware => [
     ...getDefaultMiddleware({
