@@ -1,24 +1,64 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`PDP Template component SnapShot 1`] = `
-<RCTScrollView
-  getItem={[Function]}
-  getItemCount={[Function]}
-  keyExtractor={[Function]}
-  onContentSizeChange={[Function]}
-  onLayout={[Function]}
-  onMomentumScrollBegin={[Function]}
-  onMomentumScrollEnd={[Function]}
-  onScroll={[Function]}
-  onScrollBeginDrag={[Function]}
-  onScrollEndDrag={[Function]}
-  removeClippedSubviews={false}
-  renderItem={[Function]}
-  scrollEventThrottle={50}
-  stickyHeaderIndices={[]}
-  testID="CartList"
-  viewabilityConfigCallbackPairs={[]}
->
-  <View />
-</RCTScrollView>
+[
+  <RCTScrollView
+    ItemSeparatorComponent={[Function]}
+    ListFooterComponent={[Function]}
+    getItem={[Function]}
+    getItemCount={[Function]}
+    keyExtractor={[Function]}
+    onContentSizeChange={[Function]}
+    onLayout={[Function]}
+    onMomentumScrollBegin={[Function]}
+    onMomentumScrollEnd={[Function]}
+    onScroll={[Function]}
+    onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
+    removeClippedSubviews={false}
+    renderItem={[Function]}
+    scrollEventThrottle={50}
+    stickyHeaderIndices={[]}
+    testID="CartList"
+    viewabilityConfigCallbackPairs={[]}
+  >
+    <View>
+      <View
+        onLayout={[Function]}
+      >
+        <View
+          style={
+            {
+              "paddingBottom": 100,
+            }
+          }
+        />
+      </View>
+    </View>
+  </RCTScrollView>,
+  <View
+    style={
+      {
+        "alignItems": "center",
+        "backgroundColor": "#bbb",
+        "bottom": 0,
+        "justifyContent": "center",
+        "padding": 20,
+        "position": "absolute",
+        "width": "100%",
+      }
+    }
+  >
+    <Text
+      style={
+        {
+          "paddingBottom": 10,
+        }
+      }
+    >
+      Cart Total: 
+      USD 0
+    </Text>
+  </View>,
+]
 `;
