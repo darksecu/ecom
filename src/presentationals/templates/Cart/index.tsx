@@ -3,14 +3,6 @@ import {View, Text, FlatList, Image, TouchableOpacity} from 'react-native';
 import {useAppSelector, useAppDispatch} from '../../../store/hooks';
 import {addToCart, removeFromCart} from '../../../store/slices/cart';
 
-interface listItem {
-  id: number;
-  color: string;
-  name: string;
-  price: number;
-  img: string;
-}
-
 const CartTemplate = memo(() => {
   const dispatch = useAppDispatch();
   const [itemList, setItemList] = useState({});
@@ -24,6 +16,16 @@ const CartTemplate = memo(() => {
     });
     setItemList(obj);
   }, [plpItem]);
+
+  const cartTotal = useMemo(() => {
+    let total = 0;
+    cartItem.forEach(el => {
+      let qty = el.quantity;
+      let price = itemList?.[el.itemId]?.price;
+      total = total + qty * price;
+    });
+    return total;
+  }, [plpItem, itemList]);
 
   const AddToCartPressed = useCallback(
     (id: number) => {
@@ -87,7 +89,49 @@ const CartTemplate = memo(() => {
     );
   };
 
-  return <FlatList testID="CartList" data={cartItem} renderItem={renderItem} />;
+  const ListFooterComponent = useCallback(() => {
+    return <View style={{paddingBottom: 100}} />;
+  }, []);
+
+  const ItemSeparatorComponent = useCallback(() => {
+    return (
+      <View
+        style={{
+          borderBottomColor: '#999',
+          marginBottom: 40,
+          marginTop: 40,
+          borderBottomWidth: 0.5,
+          marginHorizontal: 10,
+        }}
+      />
+    );
+  }, []);
+
+  return (
+    <React.Fragment>
+      <FlatList
+        testID="CartList"
+        data={cartItem}
+        ListFooterComponent={ListFooterComponent}
+        ItemSeparatorComponent={ItemSeparatorComponent}
+        renderItem={renderItem}
+      />
+      <View
+        style={{
+          position: 'absolute',
+          bottom: 0,
+          width: '100%',
+          padding: 20,
+          alignItems: 'center',
+          justifyContent: 'center',
+          backgroundColor: '#bbb',
+        }}>
+        <Text style={{paddingBottom: 10}}>
+          Cart Total: {`USD ${cartTotal}`}
+        </Text>
+      </View>
+    </React.Fragment>
+  );
 });
 
 export {CartTemplate};
