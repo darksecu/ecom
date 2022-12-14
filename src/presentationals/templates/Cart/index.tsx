@@ -19,7 +19,7 @@ const CartTemplate = memo(() => {
 
   const cartTotal = useMemo(() => {
     let total = 0;
-    cartItem.forEach(el => {
+    cartItem?.forEach(el => {
       let qty = el.quantity;
       let price = itemList?.[el.itemId]?.price;
       total = total + qty * price;
