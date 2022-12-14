@@ -25,7 +25,7 @@ const CartTemplate = memo(() => {
       total = total + qty * price;
     });
     return total;
-  }, [plpItem, itemList]);
+  }, [cartItem, itemList]);
 
   const AddToCartPressed = useCallback(
     (id: number) => {
