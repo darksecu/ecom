@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {SafeAreaView, StatusBar} from 'react-native';
+import {SafeAreaView, View, StatusBar} from 'react-native';
 import {PDPTemplate} from '../../templates';
 import {useRoute} from '@react-navigation/native';
 
@@ -14,10 +14,11 @@ interface listItem {
 const PDPScreen = () => {
   const {params} = useRoute();
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <View style={{flex: 1}}>
+      <SafeAreaView />
       <StatusBar />
       <PDPTemplate {...params} />
-    </SafeAreaView>
+    </View>
   );
 };
 

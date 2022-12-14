@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {SafeAreaView, StatusBar} from 'react-native';
+import {SafeAreaView, StatusBar, View} from 'react-native';
 import {useAppSelector, useAppDispatch} from '../../../store/hooks';
 import {fetchPLP} from '../../../store/slices/plp';
 import {PLPTemplate} from '../../templates';
@@ -14,10 +14,11 @@ const PLPScreen = () => {
   }, []);
 
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <View style={{flex: 1}}>
+      <SafeAreaView />
       <StatusBar />
       <PLPTemplate isLoading={isLoading} list={list} />
-    </SafeAreaView>
+    </View>
   );
 };
 
